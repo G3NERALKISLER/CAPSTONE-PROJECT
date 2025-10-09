@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body {background-color:black; color:white;}
+    .movie-container {display:flex;  flex-wrap:wrap; gap:20px; padding:60px;  background-color:black; }
+    .movie-card {border-radius:10px; width:10%; color: white;width:240px; padding:10px; background-color:black;}
+    .movie-card:hover {cursor: pointer;}
+    .movie-card h2 {font-size:22px;}
+    .movie-card img {border-radius:5px}
+    .search {padding:20px;}
+    .search button {padding:5px; border:none; border-radius:5px; color:white;background-color:darkred;}
+    .caption {font-size:27px;text-align:center;}
+
+</style>
+<h1>Movies To Watch</h1>
+
+<div class="search">
+    <form method="get">
+        <input type="text" name="q" placeholder="Search movie..." value="{{ query }}">
+        <button type="submit"><strong>Search</strong></button>
+      </form>
+</div>
+<p class="caption">Popular Movies</p>
+<div class="movie-container">
+{%for movie in movies%}
+<div class="movie-card">
+    <a href="{% url 'movie_detail' movie.imdbID %}">
+    <img src="{{ movie.Poster }}" alt="{{ movie.Title }}" width="200">
+    </a>
+
+<p>{{ movie.Year }}</p>
+</div>
+{%endfor%}
+</div>
+{% endblock %}
