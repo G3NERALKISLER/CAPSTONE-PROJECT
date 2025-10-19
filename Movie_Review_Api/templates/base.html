@@ -6,24 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Movie Review API{% endblock %}</title>
     <style>
+        body {background:url('{% static "movies/space.jpg" %}');
+        background-attachment: fixed; min-height:100vh;   background-size:cover; background-repeat:no-repeat;}
         *{margin:0;}
         h1,p{margin:20px;}
         nav {display:flex; border:2px darkred solid; border-radius:10px; border-top:0; border-right:0; background-color:black; margin:10px;width: 550px;}
         li{color:white; list-style-type:none; justify-content:flex-end;margin: 10px; font-size:26px;}
-        li:hover{color:green;}
+        li:hover{color:darkred;}
        ul {display:flex; justify-content:space-between; margin:0px; }
       a {display:flex;text-decoration:none;}
+      button {cursor: pointer;font-size:20px; padding:5px; border:none; background-color:black; color:lightgreen; margin-top:10px; border-radius:5px;}
+      .marketting{border:0px solid black; border-radius:10px; padding:10px; background-color:black; color:lightgreen;}
     </style>
 </head>
 <body >
     <div>
     <nav>
         <ul>
-        <a href=""><li>Home</li></a>
-        <a href=""><li>Movies</li></a>
-        <a href=""><li>Register</li></a>
-        <a href=""><li>Login</li></a>
-        <a href=""><li>Logout</li></a>
+        <a href="{% url 'movies:movies' %}"><li>Home</li></a>
+       
+        {% if user.is_authenticated %}
+        <form action="{% url 'users:logout'%}" method="post">
+        {% csrf_token %}
+        <button>LogOut</button>
+        </form>
+        {%else %}
+        <a href="{% url 'users:Register' %}"><li>Register</li></a>
+        <a href="{% url 'users:login' %}"><li>Login</li></a>  
+        {%endif%}
         </ul>
     </nav>
 </div>
@@ -31,7 +41,9 @@
     {% endblock %}
 
     <footer>
-        <p>© 2025 Movie Review API | Built with Django</p>
+        <p>© 2025 Movie Review API | Built with Django<b>
+           <span class="marketting"> Built by James Kamau email: jamnk06683@gmaill.com<span>
+        </p>
     </footer>
 </body>
 </html>

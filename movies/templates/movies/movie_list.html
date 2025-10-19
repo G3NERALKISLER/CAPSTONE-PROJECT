@@ -1,18 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 <style>
-    body {background-color:black; color:white;}
-    .movie-container {display:flex;  flex-wrap:wrap; gap:20px; padding:60px;  background-color:black; }
+    body { color:whitesmoke;}
+    .header {background-color:black; color:lightgreen; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);border:0px solid black; width:380px; padding:10px; border-radius:10px;}
+    .caption {text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);}
+    .movie-container {display:flex;  flex-wrap:wrap; gap:20px; padding:60px; }
     .movie-card {border-radius:10px; width:10%; color: white;width:240px; padding:10px; background-color:black;}
     .movie-card:hover {cursor: pointer;}
     .movie-card h2 {font-size:22px;}
     .movie-card img {border-radius:5px}
     .search {padding:20px;}
-    .search button {padding:5px; border:none; border-radius:5px; color:white;background-color:darkred;}
-    .caption {font-size:27px;text-align:center;}
+    .search button {padding:5px; border:none; border-radius:5px; color:white;
+    font-size:14px;
+    background-color:darkred;}
+    .search button:hover {cursor: pointer;}
+    .paragraph {text-align:center; align-items:center;width:250px; border-radius:10px; border:1.5px solid lightgreen; border-top:0; border-right:0; background:black;}
+    .caption {font-size:27px;color:lightgreen; }
 
 </style>
-<h1>Movies To Watch</h1>
+<h1 class='header'>Movies & Series To Watch</h1>
 
 <div class="search">
     <form method="get">
@@ -20,11 +26,13 @@
         <button type="submit"><strong>Search</strong></button>
       </form>
 </div>
-<p class="caption">Popular Movies</p>
+<div class="paragraph">
+<p class="caption">Popular Series</p>
+</div>
 <div class="movie-container">
 {%for movie in movies%}
 <div class="movie-card">
-    <a href="{% url 'movie_detail' movie.imdbID %}">
+    <a href="{% url 'movies:movie_detail' movie.imdbID %}">
     <img src="{{ movie.Poster }}" alt="{{ movie.Title }}" width="200">
     </a>
 

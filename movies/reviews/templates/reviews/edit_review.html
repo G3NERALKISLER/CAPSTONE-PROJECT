@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body {background-color:black; color:white; margin:10px;}
+    .form { padding:20px; width: 400px; border-radius:8px; background-color:wheat; color:black;}
+</style>
+<h2>Edit Your Review for {{ review.movie_title }}</h2>
+
+<form class="form" method="post" action="{% url 'edit_review' review.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update Review</button>
+</form>
+{% endblock %}

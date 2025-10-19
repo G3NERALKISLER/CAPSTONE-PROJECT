@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body {background-color:black; color:white;}
+    form {padding:20px;}
+   form li {line-height:1.5; display: none;}
+   form input {margin:10px;}
+   button {background-color:darkred; color:white; margin:10px; border:none; border-radius:5px;}
+   button:hover {cursor: pointer;}
+    
+</style>
+<h1>Register a New User</h1>
+<form action="/users/register/" method="post">
+    {% csrf_token %}
+    {{form}}
+    <button>Submit</button>
+</form>
+{% endblock %}
