@@ -64,4 +64,4 @@ class ReviewDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
             serializer.save()
         else:
             raise PermissionDenied("You can only edit your own review.")
-
+ 
