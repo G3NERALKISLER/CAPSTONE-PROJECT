@@ -8,7 +8,7 @@ from .serializers import MovieSerializer
 # Create your views here.
 #views for displaying templates
 def movie_list(request):
-   api_key = '5891d27a'  
+   api_key = 'Api key'  
    query = request.GET.get('q') 
    if query:
         url = f'https://www.omdbapi.com/?apikey={api_key}&s={query}'
@@ -26,7 +26,7 @@ def movie_list(request):
    return render(request, 'movies/movie_list.html', {'movies': all_movies, 'query': query,})
 
 def movie_detail(request, imdb_id):
-   api_key = '5891d27a'
+   api_key = 'api keys'
    youtube_api_key = 'AIzaSyC09PGYTDQvBEZFJqKPLyHDprD2NyKVf4k'
    url = f'https://www.omdbapi.com/?apikey={api_key}&i={imdb_id}&plot=full'
    response = requests.get(url)
